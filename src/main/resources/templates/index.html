@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>叮咚抢菜</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <form class="layui-form-pane layui-form">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md5" style="max-width: 580px">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-header layui-bg-cyan">参数</div>
+                            <div class="layui-card-body">
+                                <div class="layui-row layui-col-space10">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">station-id</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="station-id" th:value="${prop?.stationId}" disabled placeholder="此值检查后自动填入" autocomplete="off" class="layui-input layui-disabled layui-bg-gray">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">address-id</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="address-id" th:value="${prop?.addressId}" disabled placeholder="此值检查后自动填入" autocomplete="off" class="layui-input layui-disabled layui-bg-gray">
+                                        </div>
+                                    </div>
+                                </div>
+                                <fieldset class="layui-elem-field layui-field-title">
+                                    <legend class="layui-font-14"><b>Header参数</b></legend>
+                                </fieldset>
+                                <div class="layui-row layui-col-space10">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">ddmc-device-id</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="ddmc-device-id" th:value="${prop?.header?.ddmcDeviceId}" required lay-verify="required" placeholder="请输入ddmc-device-id对应的值" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">cookie</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="cookie" th:value="${prop?.header?.cookie}" required lay-verify="required" placeholder="请输入cookie对应的值" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">ddmc-longitude</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="ddmc-longitude" th:value="${prop?.header?.ddmcLongitude}" required lay-verify="required" placeholder="请输入ddmc-longitude对应的值" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">ddmc-latitude</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="ddmc-latitude" th:value="${prop?.header?.ddmcLatitude}" required lay-verify="required" placeholder="请输入ddmc-latitude对应的值" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">ddmc-uid</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="ddmc-uid" th:value="${prop?.header?.ddmcUid}" required lay-verify="required" placeholder="请输入ddmc-uid对应的值" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">user-agent</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="user-agent" th:value="${prop?.header?.userAgent}" required lay-verify="required" placeholder="请输入user-agent对应的值" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <fieldset class="layui-elem-field layui-field-title">
+                                    <legend class="layui-font-14"><b>Body参数</b></legend>
+                                </fieldset>
+                                <div class="layui-row layui-col-space10">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">s_id</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="s_id" th:value="${prop?.body?.sid}" required lay-verify="required" placeholder="请输入s_id对应的值" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">openid</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="openid" th:value="${prop?.body?.openid}" required lay-verify="required" placeholder="请输入openid对应的值" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md12">
+                                        <div class="layui-col-md3">
+                                            <label style="width: 100%;" class="layui-form-label">device_token</label>
+                                        </div>
+                                        <div class="layui-col-md9">
+                                            <input type="text" name="device_token" th:value="${prop?.body?.deviceToken}" required lay-verify="required" placeholder="请输入device_token对应的值" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-btn-container">
+                            <div class="layui-row layui-col-space10">
+                                <div class="layui-col-md8">
+                                    <button type="submit" lay-submit lay-filter="check" class="layui-btn layui-btn-fluid">检查配置</button>
+                                </div>
+                                <div class="layui-col-md4">
+                                    <button type="submit" lay-submit lay-filter="runTest" class="layui-btn layui-btn-fluid">运行测试</button>
+                                </div>
+                                <div class="layui-col-md4">
+                                    <button type="submit" lay-submit lay-filter="run" class="layui-btn layui-btn-fluid layui-bg-cyan">直接运行</button>
+                                </div>
+                                <div class="layui-col-md4">
+                                    <button type="submit" lay-submit lay-filter="run6" class="layui-btn layui-btn-fluid layui-bg-cyan">定时运行(6点档)</button>
+                                </div>
+                                <div class="layui-col-md4">
+                                    <button type="submit" lay-submit lay-filter="run8" class="layui-btn layui-btn-fluid layui-bg-cyan">定时运行(8点半档)</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md7" style="max-width: 800px">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body layui-bg-cyan" style="height: 760px;overflow-y: auto">
+                                <div style="height: 760px;overflow-y: auto">
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                    这是日志信息<br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/layuiadmin/layui/layui.js?t=1"></script>
+<script>
+    document.querySelectorAll('.layui-card')[1].style.Maxheight = window.innerHeight+'px'
+
+    layui.use(['form'], function () {
+        let $ = layui.$;
+        let form = layui.form;
+
+        function loadPropJson(){
+            let stationId = $("input[name='station-id']").val();
+            let addressId = $("input[name='address-id']").val();
+
+            let ddmcDeviceId = $("input[name='ddmc-device-id']").val();
+            let cookie = $("input[name='cookie']").val();
+            let ddmcLongitude = $("input[name='ddmc-longitude']").val();
+            let ddmcLatitude = $("input[name='ddmc-latitude']").val();
+            let ddmcUid = $("input[name='ddmc-uid']").val();
+            let userAgent = $("input[name='user-agent']").val();
+
+
+            let sid = $("input[name='s_id']").val();
+            let openid = $("input[name='openid']").val();
+            let deviceToken = $("input[name='device_token']").val();
+
+            return JSON.stringify({
+                stationId:stationId,
+                addressId:addressId,
+                header:{
+                    ddmcDeviceId:ddmcDeviceId,
+                    cookie:cookie,
+                    ddmcLongitude:ddmcLongitude,
+                    ddmcLatitude:ddmcLatitude,
+                    ddmcUid:ddmcUid,
+                    userAgent:userAgent
+                },
+                body:{
+                    sid:sid,
+                    openid:openid,
+                    deviceToken:deviceToken
+                }
+            });
+        }
+
+        form.on('submit(check)', function (data) {
+            $.ajax({
+                url:'/check',
+                type:'post',
+                contentType:'application/json;charset=UTF-8',
+                data:loadPropJson(),
+                success:function (data) {
+                    let result = JSON.parse(data);
+                    $("input[name='station-id']").val(result.stationId);
+                    $("input[name='address-id']").val(result.addressId);
+                }
+            });
+
+            return false;
+        });
+
+        form.on('submit(runTest)', function (data) {
+            $.ajax({
+                url:'/runTest',
+                type:'post',
+                contentType:'application/json;charset=UTF-8',
+                data:loadPropJson(),
+                success:function (data) {
+                }
+            });
+            return false;
+        });
+
+        form.on('submit(run)', function (data) {
+            $.ajax({
+                url:'/run',
+                type:'post',
+                contentType:'application/json;charset=UTF-8',
+                data:loadPropJson(),
+                success:function (data) {
+                }
+            });
+            return false;
+        });
+
+        form.on('submit(run6)', function (data) {
+            $.ajax({
+                url:'/run6',
+                type:'post',
+                contentType:'application/json;charset=UTF-8',
+                data:loadPropJson(),
+                success:function (data) {
+                }
+            });
+            return false;
+        });
+
+        form.on('submit(run8)', function (data) {
+            $.ajax({
+                url:'/run8',
+                type:'post',
+                contentType:'application/json;charset=UTF-8',
+                data:loadPropJson(),
+                success:function (data) {
+                }
+            });
+            return false;
+        });
+    });
+
+</script>
+</body>
+</html>
+
