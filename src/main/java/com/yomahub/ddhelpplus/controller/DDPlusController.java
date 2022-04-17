@@ -5,9 +5,11 @@ import cn.hutool.core.io.resource.Resource;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.yomahub.ddhelpplus.core.Api;
 import com.yomahub.ddhelpplus.core.UserConfig;
+import com.yomahub.ddhelpplus.sse.SSEManager;
 import com.yomahub.ddhelpplus.vo.CheckVO;
 import com.yomahub.ddhelpplus.vo.DDPlusProp;
 import org.slf4j.Logger;
@@ -149,7 +151,7 @@ public class DDPlusController {
             if (!api.context.containsKey("end")) {
                 api.context.put("end", new HashMap<>());
                 sleep(3000);
-                System.err.println("未成功下单，执行2分钟自动停止");
+                print(false,"未成功下单，执行2分钟自动停止");
             }
         }).start();
 
@@ -169,7 +171,7 @@ public class DDPlusController {
                     Map<String, Object> cartMap = api.getCart(mode == 2 || mode == 3);
                     if (cartMap != null) {
                         if (Double.parseDouble(cartMap.get("total_money").toString()) < minOrderPrice) {
-                            System.err.println("订单金额：" + cartMap.get("total_money").toString() + " 不满足最小金额设置：" + minOrderPrice + " 继续重试");
+                            print(false,"订单金额：" + cartMap.get("total_money").toString() + " 不满足最小金额设置：" + minOrderPrice + " 继续重试");
                         } else {
                             api.context.put("cartMap", cartMap);
                         }
@@ -213,7 +215,7 @@ public class DDPlusController {
                         continue;
                     }
                     if (api.addNewOrder(api.userConfig.addressId, api.context.get("cartMap"), api.context.get("multiReserveTimeMap"), api.context.get("checkOrderMap"))) {
-                        System.out.println("铃声持续1分钟，终止程序即可，如果还需要下单再继续运行程序");
+                        print(true,"铃声持续1分钟，终止程序即可，如果还需要下单再继续运行程序");
                         api.play();
                     }
                 }
@@ -223,7 +225,7 @@ public class DDPlusController {
 
     private void runTest(Api api){
         if (api.userConfig.addressId.length() == 0) {
-            System.err.println("请先执行UserConfig获取配送地址id");
+            print(false,"请先执行UserConfig获取配送地址id");
             return;
         }
 
@@ -255,7 +257,17 @@ public class DDPlusController {
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
         int currentSecond = Calendar.getInstance().get(Calendar.SECOND);
-        System.out.println("时间触发 当前时间 " + currentHour + ":" + currentMinute + ":" + currentSecond + " 目标时间 " + hour + ":" + minute + ":" + second);
+        print(true,"时间触发 当前时间 " + currentHour + ":" + currentMinute + ":" + currentSecond + " 目标时间 " + hour + ":" + minute + ":" + second);
         return currentHour == hour && currentMinute == minute && currentSecond >= second;
+    }
+
+    private void print(boolean normal, String message) {
+        if (normal) {
+            System.out.println(message);
+            SSEManager.send(message);
+        } else {
+            System.err.println(message);
+            SSEManager.send(StrUtil.format("<font color='red'>{}</font>",message));
+        }
     }
 }

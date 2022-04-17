@@ -2,12 +2,14 @@ package com.yomahub.ddhelpplus.core;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ResourceUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.google.common.collect.ImmutableMap;
+import com.yomahub.ddhelpplus.sse.SSEManager;
 import com.yomahub.ddhelpplus.vo.CheckVO;
 
 import javax.script.Invocable;
@@ -53,7 +55,7 @@ public class Api {
                 ScriptEngine engine = manager.getEngineByExtension("js");
                 if (engine == null) {
                     if (!jdk8Warning) {
-                        System.err.println("请使用jdk1.8版本，高版本不支持请求中的签名参数，不影响功能，只是参数中不带签名");
+                        print(false,"请使用jdk1.8版本，高版本不支持请求中的签名参数，不影响功能，只是参数中不带签名");
                         jdk8Warning = true;
                     }
                     return body;
@@ -98,8 +100,10 @@ public class Api {
         }
         if (normal) {
             System.out.println(message);
+            SSEManager.send(message);
         } else {
             System.err.println(message);
+            SSEManager.send(StrUtil.format("<font color='red'>{}</font>",message));
         }
     }
 
@@ -127,7 +131,7 @@ public class Api {
         }
         if ("您的访问已过期".equals(object.getStr("message"))) {
             context.put("end", new HashMap<>());
-            System.err.println("用户信息失效，请确保UserConfig参数准确，并且微信上的叮咚小程序不能退出登录");
+            print(false,"用户信息失效，请确保UserConfig参数准确，并且微信上的叮咚小程序不能退出登录");
             return false;
         }
         String msg = null;
@@ -149,7 +153,7 @@ public class Api {
      */
     public CheckVO checkUserConfig() {
         try {
-            System.out.println("开始获取收货人信息");
+            print(true, "开始获取收货人信息");
             HttpRequest httpRequest = HttpUtil.createGet("https://sunquan.api.ddxq.mobi/api/v1/user/address/");
             Map<String, String> headers = userConfig.getHeaders();
             httpRequest.addHeaders(headers);
@@ -161,33 +165,33 @@ public class Api {
                 return null;
             }
             JSONArray validAddress = object.getJSONObject("data").getJSONArray("valid_address");
-            System.out.println("获取可用的收货地址条数：" + validAddress.size());
+            print(true, "获取可用的收货地址条数：" + validAddress.size());
             for (int i = 0; i < validAddress.size(); i++) {
                 JSONObject address = validAddress.getJSONObject(i);
                 if (address.getBool("is_default")) {
                     JSONObject stationInfo = address.getJSONObject("station_info");
 
-                    System.out.println("获取默认收货地址成功 请仔细核对站点和收货地址信息 站点信息配置错误将导致无法下单");
-                    System.out.println("1.该地址对应城市名称为：" + stationInfo.get("city_name"));
-                    System.out.println("2.该地址对应站点名称为：" + stationInfo.get("name"));
-                    System.out.println("3.该地址详细信息：" + address.getStr("addr_detail") + " 手机号：" + address.getStr("mobile"));
-                    System.out.println("");
+                    print(true, "获取默认收货地址成功 请仔细核对站点和收货地址信息 站点信息配置错误将导致无法下单");
+                    print(true, "1.该地址对应城市名称为：" + stationInfo.get("city_name"));
+                    print(true, "2.该地址对应站点名称为：" + stationInfo.get("name"));
+                    print(true, "3.该地址详细信息：" + address.getStr("addr_detail") + " 手机号：" + address.getStr("mobile"));
+                    print(true, "");
 
 
                     if (address.containsValue("city_number") ||  !address.getStr("city_number").equals(userConfig.cityId)) {
-                        System.err.println("城市id只能为0101");
+                        print(false, "城市id只能为0101");
                     } else {
-                        System.out.println("城市id配置正确");
+                        print(true, "城市id配置正确");
                     }
                     if (!stationInfo.getStr("id").equals(userConfig.stationId)) {
-                        System.err.println("站点id配置不正确，请填入UserConfig.stationId = " + stationInfo.getStr("id"));
+                        print(false,"站点id配置不正确，请填入UserConfig.stationId = " + stationInfo.getStr("id"));
                     } else {
-                        System.out.println("站点id配置正确");
+                        print(true,"站点id配置正确");
                     }
                     if (!address.getStr("id").equals(userConfig.addressId)) {
-                        System.err.println("地址id配置不正确，请填入UserConfig.addressId = " + address.getStr("id"));
+                        print(false,"地址id配置不正确，请填入UserConfig.addressId = " + address.getStr("id"));
                     } else {
-                        System.out.println("地址id配置正确");
+                        print(true,"地址id配置正确");
                     }
                     CheckVO checkVO = new CheckVO();
                     checkVO.setCityId("0101");
@@ -199,7 +203,7 @@ public class Api {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.err.println("没有可用的默认收货地址，请自行登录叮咚设置该站点可用的默认收货地址");
+        print(false,"没有可用的默认收货地址，请自行登录叮咚设置该站点可用的默认收货地址");
         return null;
     }
 
@@ -519,7 +523,7 @@ public class Api {
             context.put("success", new HashMap<>());
             context.put("end", new HashMap<>());
             for (int i = 0; i < 10; i++) {
-                System.out.println("恭喜你，已成功下单 当前下单总金额：" + cartMap.get("total_money"));
+                print(true, "恭喜你，已成功下单 当前下单总金额：" + cartMap.get("total_money"));
             }
             return true;
         } catch (Exception e) {

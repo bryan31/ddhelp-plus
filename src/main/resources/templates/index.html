@@ -15,7 +15,53 @@
 <div class="layui-fluid">
     <form class="layui-form-pane layui-form">
         <div class="layui-row layui-col-space15">
-            <div class="layui-col-md5" style="max-width: 580px">
+            <div class="layui-col-md12" style="max-width: 1380px">
+                <div class="layui-card">
+                    <div class="layui-collapse">
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">叮咚抢菜PLUS版本说明</h2>
+                            <div class="layui-colla-content">
+                                <h3><b>简短说明</b></h3>
+                                <hr class="layui-bg-gray">
+                                此项目的核心后端程序来自于开源项目：<a target="_blank" style="color: green" href="https://github.com/JannsenYang/dingdong-helper">https://github.com/JannsenYang/dingdong-helper</a><br>
+                                感谢这位作者的无私奉献，让身处疫情之中的我们能够顺利抢到菜吃饱饭。希望上海早日解封，恢复正常的生活！<br>
+                                此项目只是原项目基础上进行修改，提供了web版本，让未安装java环境的普通用户能顺利抢菜。<br>
+                                不过即使省去了java环境的安装，能直接运行，但是前期抓包获得参数这一步还是省略不了。<br>
+                                从这个意义上来说，普通人使用还是需要一定的门槛。如果你是技术人员可以忽略下面的抓包教程。<br>
+                                还有就是此项目仅限于在上海抢不到菜的人使用，其他地区请勿用。<br>
+                                <br>
+                                <h3><b>抓包教程</b></h3>
+                                <hr class="layui-bg-gray">
+                                界面中左边的参数就是需要抓包获得的。抓包只需要抓一次，并且参数会自动保存下来。不需要每次做这个操作的。<br>
+                                1.首先点<a target="_blank" style="color: green" href="https://www.charlesproxy.com/download/">https://www.charlesproxy.com/download/</a>去下载Charles抓包软件，选择适合自己系统的安装软件进行安装。<br>
+                                2.然后安装SSL证书，整个过程很简单，过程这篇文章写的很详细，一步步照做就行了，链接：<a target="_blank" style="color: green" href="https://blog.csdn.net/z2181745/article/details/123002569">https://blog.csdn.net/z2181745/article/details/123002569</a>。<br>
+                                虽然这篇文章是mac环境下的设置，但是windows环境也差不多。很简单。<br>
+                                3.打开Charles，左边就是你实时访问出去的http连接，不用管。在电脑端的微信上打开叮咚小程序，这里注意，一定得是电脑端微信的小程序哦！不是手机端微信的小程序。（当然如果你会使用Charles会设置代理，那当我没说，此说明针对于非技术用户）<br>
+                                4.确保你电脑端叮咚小程序已经是登陆状态了，把你要买的地址设为默认。确认首页左上角是你选的地址。然后点击购物车。然后照着下图去找相应的参数，找到参数后填入下面的输入框。<br>
+                                <a target="_blank" style="color: green" href="http://127.0.0.1:8686/image/1.png">点击此处查看图片</a><br>
+                                <br>
+                                <h3><b>WEB界面使用教程</b></h3>
+                                <hr class="layui-bg-gray">
+                                当参数都填入后（最前面2个不用填），点击检查配置。如果参数没有问题的话，右边会显示你的stationId和addressId，程序会自动在左边填入这2个值。然后可以再点一次检查配置。提示所有参数配置正确就ok了。<br>
+                                你只需要在手机叮咚APP中把你想要菜加入购物车，然后在web页面上点击定时运行（6点档）或者定时运行（8点档）就可以了。程序会倒计时，到那个时间点，会自动帮你提交订单。<br>
+                                提交订单成功后，你可以在手机叮咚APP中看到一单待支付的订单。这时就可以愉快的支付了等待收货了。<br>
+                                其他按钮说明下，运行测试，是指只提交一次，用于验证。正式抢的时候不要点。<br>
+                                直接运行是指马上开始抢，你自己控制好时间，比如说5点59分30秒的时候点直接运行，也是可以的。但还是建议用定时运行功能。<br>
+                                不管抢到还是没抢到，程序都会在在正式开始抢之后的2分钟自动结束（定时的时间不算哦）。<br>
+                                <br>
+                                <h3><b>关于成功率</b></h3>
+                                <hr class="layui-bg-gray">
+                                这个抢菜程序的原理就是模拟小程序去多线程的发请求提交订单。<br>
+                                我的很多朋友已经抢到了，成功率还是很高的。所以还是感谢下原作者，本人锦上添花下，让没有开发环境的朋友，也能用这款软件抢到。<br>
+                                最后祝大家都能抢到菜，愿疫情快快结束，peace！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-col-space15" style="max-width: 1380px">
+            <div class="layui-col-md5">
                 <div class="layui-row layui-col-space15">
                     <div class="layui-col-md12">
                         <div class="layui-card">
@@ -145,62 +191,13 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-col-md7" style="max-width: 800px">
+            <div class="layui-col-md7">
                 <div class="layui-row layui-col-space15">
                     <div class="layui-col-md12">
                         <div class="layui-card">
                             <div class="layui-card-body layui-bg-cyan" style="height: 760px;overflow-y: auto">
-                                <div style="height: 760px;overflow-y: auto">
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
-                                    这是日志信息<br>
+                                <div id="log" style="height: 760px;overflow-y: auto">
+
                                 </div>
                             </div>
                         </div>
@@ -213,8 +210,6 @@
 
 <script src="/layuiadmin/layui/layui.js?t=1"></script>
 <script>
-    document.querySelectorAll('.layui-card')[1].style.Maxheight = window.innerHeight+'px'
-
     layui.use(['form'], function () {
         let $ = layui.$;
         let form = layui.form;
@@ -319,6 +314,33 @@
         });
     });
 
+    /***************以下为SSE相关代码*****************/
+
+    let $ = layui.$;
+
+    let source = null;
+
+    const clientId = new Date().getTime();
+
+    if (window.EventSource) {
+        // 建立连接
+        source = new EventSource('http://127.0.0.1:8686/sse/connect/' + clientId);
+        var log = $("#log")
+        /**
+         * 客户端收到服务器发来的数据
+         * 另一种写法：source.onmessage = function (event) {}
+         */
+        var messages = []
+        source.addEventListener('message', function(e) {
+            messages.push(e.data)
+            if(messages.length > 1000){
+                messages.shift()
+            }
+            log.html(messages.join('</br>')).scrollTop(999999)
+        });
+    } else {
+        console.log("你的浏览器不支持sse")
+    }
 </script>
 </body>
 </html>
