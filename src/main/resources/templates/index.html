@@ -19,7 +19,7 @@
                 <div class="layui-card">
                     <div class="layui-collapse">
                         <div class="layui-colla-item">
-                            <h2 class="layui-colla-title layui-bg-green">叮咚抢菜PLUS版本说明（运行前先点此看说明）</h2>
+                            <h2 class="layui-colla-title layui-bg-green"><b>叮咚抢菜PLUS版本说明（运行前先点此看说明）</b></h2>
                             <div class="layui-colla-content">
                                 <h3><b>简短说明</b></h3>
                                 <hr class="layui-bg-gray">
@@ -75,7 +75,7 @@
             <div class="layui-btn-container">
                 <div class="layui-row layui-col-space10">
                     <div class="layui-col-md2">
-                        <button id="parse" type="button" class="layui-btn layui-btn-fluid layui-bg-green">解析成参数</button>
+                        <button id="parse" type="button" onclick="parseRaw();" class="layui-btn layui-btn-fluid layui-bg-green">解析成参数</button>
                     </div>
                 </div>
             </div>
@@ -334,12 +334,15 @@
         });
     });
 
-    let $ = layui.$;
+    function parseRaw(){
+        alert("解析");
+    }
+
 
 
     /***************以下为SSE相关代码*****************/
 
-
+    let $ = layui.$;
 
     let source = null;
 
