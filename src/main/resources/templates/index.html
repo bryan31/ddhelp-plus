@@ -277,6 +277,9 @@
                 return;
             }
             let params = cURL.split(' ');
+            if (params[0] !== 'curl') {
+                alert('请复制 [cURL Request] 到此文本框!');
+            }
             let pathstr = params[params.length - 1];
             let path = pathstr.substring(1, pathstr.length - 2);
             let url = new URL(path)
