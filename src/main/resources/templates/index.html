@@ -39,7 +39,7 @@
                                 Windows版Charles设置链接：<a target="_blank" style="color: green" href="https://blog.csdn.net/ZY_qili/article/details/123875251">https://blog.csdn.net/ZY_qili/article/details/123875251</a>。<br>
                                 文章中每一步都要照做，细心点，别漏了步骤哦！<br>
                                 3.打开Charles，左边就是你实时访问出去的http连接，不用管。在电脑端的微信上打开叮咚小程序，这里注意，一定得是电脑端微信的小程序哦！不是手机端微信的小程序。（当然如果你会使用Charles会设置代理，那当我没说，此说明针对于非技术用户）<br>
-                                4.确保你电脑端叮咚小程序已经是登陆状态了，把你要买的地址设为默认。确认首页左上角是你选的地址。然后点击购物车。然后照着下图去找相应的参数，找到参数后填入下面的输入框。<br>
+                                4.确保你电脑端叮咚小程序已经是登陆状态了，把你要买的地址设为默认。确认首页左上角是你选的地址。然后点击购物车。然后照着下图去复制请求串，贴到下面的大框内按解析按钮。<br>
                                 <br>
                                 <h3><b><a target="_blank" style="color: red" href="http://127.0.0.1:8686/image/1.png">点击此处查看图片</a></b>，请仔细看图，跟着步骤做！</h3><br>
                                 <br>
@@ -68,7 +68,7 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-col-md12">
-                        <textarea name="requestRaw" placeholder="请抓包后，复制row中的内容贴在此处" class="layui-textarea"></textarea>
+                        <textarea name="requestRaw" placeholder="请抓包后，复制cUrl Request中的内容贴在此处，详细操作方法请看上面的说明" class="layui-textarea"></textarea>
                     </div>
                 </div>
             </div>
@@ -311,18 +311,6 @@
             $("input[name='s_id']").val(queryParams['s_id']);
             $("input[name='openid']").val(queryParams['openid']);
             $("input[name='device_token']").val(queryParams['device_token']);
-
-            $.ajax({
-                url:'/check',
-                type:'post',
-                contentType:'application/json;charset=UTF-8',
-                data:loadPropJson(),
-                success:function (data) {
-                    let result = JSON.parse(data);
-                    $("input[name='station-id']").val(result.stationId);
-                    $("input[name='address-id']").val(result.addressId);
-                }
-            });
         });
 
 
