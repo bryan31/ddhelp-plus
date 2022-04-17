@@ -184,12 +184,12 @@ public class Api {
                         print(true, "城市id配置正确");
                     }
                     if (!stationInfo.getStr("id").equals(userConfig.stationId)) {
-                        print(false,"站点id配置不正确，请填入UserConfig.stationId = " + stationInfo.getStr("id"));
+                        print(true,"获取到stationId，stationId = " + stationInfo.getStr("id"));
                     } else {
                         print(true,"站点id配置正确");
                     }
                     if (!address.getStr("id").equals(userConfig.addressId)) {
-                        print(false,"地址id配置不正确，请填入UserConfig.addressId = " + address.getStr("id"));
+                        print(true,"获取到addressId，addressId = " + address.getStr("id"));
                     } else {
                         print(true,"地址id配置正确");
                     }

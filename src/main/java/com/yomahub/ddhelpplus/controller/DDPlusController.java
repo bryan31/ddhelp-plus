@@ -35,12 +35,6 @@ public class DDPlusController {
     private final String PROP_PATH = "prop.json";
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
-    public String root(HttpServletRequest request){
-        return "hello</br>how are you?</br>I'm not fine,thank you,and you?</br>滚!";
-    }
-
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(ModelMap modelMap){
         String path = FileUtil.getAbsolutePath(PROP_PATH);
         if(FileUtil.exist(path)){
