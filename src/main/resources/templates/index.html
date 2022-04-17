@@ -14,12 +14,12 @@
 
 <div class="layui-fluid">
     <form class="layui-form-pane layui-form">
-        <div class="layui-row layui-col-space15">
-            <div class="layui-col-md12" style="max-width: 1380px">
+        <div class="layui-row layui-col-space15" style="max-width: 1380px">
+            <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-collapse">
                         <div class="layui-colla-item">
-                            <h2 class="layui-colla-title">叮咚抢菜PLUS版本说明</h2>
+                            <h2 class="layui-colla-title layui-bg-green">叮咚抢菜PLUS版本说明（运行前先点此看说明）</h2>
                             <div class="layui-colla-content">
                                 <h3><b>简短说明</b></h3>
                                 <hr class="layui-bg-gray">
@@ -34,14 +34,18 @@
                                 <hr class="layui-bg-gray">
                                 界面中左边的参数就是需要抓包获得的。抓包只需要抓一次，并且参数会自动保存下来。不需要每次做这个操作的。<br>
                                 1.首先点<a target="_blank" style="color: green" href="https://www.charlesproxy.com/download/">https://www.charlesproxy.com/download/</a>去下载Charles抓包软件，选择适合自己系统的安装软件进行安装。<br>
-                                2.然后安装SSL证书，整个过程很简单，过程这篇文章写的很详细，一步步照做就行了，链接：<a target="_blank" style="color: green" href="https://blog.csdn.net/z2181745/article/details/123002569">https://blog.csdn.net/z2181745/article/details/123002569</a>。<br>
-                                虽然这篇文章是mac环境下的设置，但是windows环境也差不多。很简单。<br>
+                                2.然后安装SSL证书，整个过程很简单，过程文章写的很详细，一步步照做就行了。<br>
+                                MacOS版Charles设置链接：<a target="_blank" style="color: green" href="https://blog.csdn.net/z2181745/article/details/123002569">https://blog.csdn.net/z2181745/article/details/123002569</a>。<br>
+                                Windows版Charles设置链接：<a target="_blank" style="color: green" href="https://blog.csdn.net/ZY_qili/article/details/123875251">https://blog.csdn.net/ZY_qili/article/details/123875251</a>。<br>
+                                文章中每一步都要照做，细心点，别漏了步骤哦！<br>
                                 3.打开Charles，左边就是你实时访问出去的http连接，不用管。在电脑端的微信上打开叮咚小程序，这里注意，一定得是电脑端微信的小程序哦！不是手机端微信的小程序。（当然如果你会使用Charles会设置代理，那当我没说，此说明针对于非技术用户）<br>
                                 4.确保你电脑端叮咚小程序已经是登陆状态了，把你要买的地址设为默认。确认首页左上角是你选的地址。然后点击购物车。然后照着下图去找相应的参数，找到参数后填入下面的输入框。<br>
-                                <a target="_blank" style="color: green" href="http://127.0.0.1:8686/image/1.png">点击此处查看图片</a><br>
+                                <br>
+                                <h3><b><a target="_blank" style="color: red" href="http://127.0.0.1:8686/image/1.png">点击此处查看图片</a></b>，请仔细看图，跟着步骤做！</h3><br>
                                 <br>
                                 <h3><b>WEB界面使用教程</b></h3>
                                 <hr class="layui-bg-gray">
+                                电脑端的小程序只是用来抓包的，抓好就可以关掉了。此程序只是用来自动下单的。程序自动抢菜成功后（当然前提是你购物车得有东西可下单），在你的订单里会多出一个待支付的订单。你只需要在手机端APP支付就可以了。<br>
                                 当参数都填入后（最前面2个不用填），点击检查配置。如果参数没有问题的话，右边会显示你的stationId和addressId，程序会自动在左边填入这2个值。然后可以再点一次检查配置。提示所有参数配置正确就ok了。<br>
                                 你只需要在手机叮咚APP中把你想要菜加入购物车，然后在web页面上点击定时运行（6点档）或者定时运行（8点档）就可以了。程序会倒计时，到那个时间点，会自动帮你提交订单。<br>
                                 提交订单成功后，你可以在手机叮咚APP中看到一单待支付的订单。这时就可以愉快的支付了等待收货了。<br>
@@ -56,6 +60,22 @@
                                 最后祝大家都能抢到菜，愿疫情快快结束，peace！
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-col-space15" style="max-width: 1380px">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-col-md12">
+                        <textarea name="requestRaw" placeholder="请抓包后，复制row中的内容贴在此处" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-btn-container">
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col-md2">
+                        <button id="parse" type="button" class="layui-btn layui-btn-fluid layui-bg-green">解析成参数</button>
                     </div>
                 </div>
             </div>
@@ -172,10 +192,10 @@
                         <div class="layui-btn-container">
                             <div class="layui-row layui-col-space10">
                                 <div class="layui-col-md8">
-                                    <button type="submit" lay-submit lay-filter="check" class="layui-btn layui-btn-fluid">检查配置</button>
+                                    <button type="submit" lay-submit lay-filter="check" class="layui-btn layui-btn-fluid layui-bg-cyan">检查配置</button>
                                 </div>
                                 <div class="layui-col-md4">
-                                    <button type="submit" lay-submit lay-filter="runTest" class="layui-btn layui-btn-fluid">运行测试</button>
+                                    <button type="submit" lay-submit lay-filter="runTest" class="layui-btn layui-btn-fluid layui-bg-cyan">运行测试</button>
                                 </div>
                                 <div class="layui-col-md4">
                                     <button type="submit" lay-submit lay-filter="run" class="layui-btn layui-btn-fluid layui-bg-cyan">直接运行</button>
@@ -314,9 +334,12 @@
         });
     });
 
+    let $ = layui.$;
+
+
     /***************以下为SSE相关代码*****************/
 
-    let $ = layui.$;
+
 
     let source = null;
 
