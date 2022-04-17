@@ -40,7 +40,7 @@
 
 界面中左边的参数就是需要抓包获得的。抓包只需要抓一次，并且参数会自动保存下来。不需要每次做这个操作的。
 
-1.首先点https://www.charlesproxy.com/download/去下载Charles抓包软件，选择适合自己系统的安装软件进行安装。
+1.首先去下载Charles抓包软件，选择适合自己系统的安装软件进行安装。链接：https://www.charlesproxy.com/download/
 
 2.然后安装SSL证书，整个过程很简单，过程文章写的很详细，一步步照做就行了。
 
