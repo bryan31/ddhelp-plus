@@ -58,6 +58,9 @@ Windows版Charles设置链接：https://blog.csdn.net/ZY_qili/article/details/12
 
 ![](img/2.png)
 
+然后把复制的字符串贴到下面这个框内，点解析
+
+![](img/3.png)
 
 
 ## WEB界面使用教程
