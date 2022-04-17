@@ -75,7 +75,7 @@
             <div class="layui-btn-container">
                 <div class="layui-row layui-col-space10">
                     <div class="layui-col-md2">
-                        <button id="parse" type="button" onclick="parseRaw();" class="layui-btn layui-btn-fluid layui-bg-green">解析成参数</button>
+                        <button id="parse" type="button" class="layui-btn layui-btn-fluid layui-bg-green">解析成参数</button>
                     </div>
                 </div>
             </div>
@@ -250,6 +250,7 @@
             let openid = $("input[name='openid']").val();
             let deviceToken = $("input[name='device_token']").val();
 
+
             return JSON.stringify({
                 stationId:stationId,
                 addressId:addressId,
@@ -268,6 +269,59 @@
                 }
             });
         }
+
+
+        $('#parse').click(function () {
+            let cURL = $('textarea[name=requestRaw]').val().trim()
+            if (cURL == '') {
+                return;
+            }
+            let params = cURL.split(' ');
+            let pathstr = params[params.length - 1];
+            let path = pathstr.substring(1, pathstr.length - 2);
+            let url = new URL(path)
+            let queryParams = {
+                's_id': url.searchParams.get('s_id'),
+                'openid': url.searchParams.get('openid'),
+                'device_token': url.searchParams.get('device_token')
+            }
+            let headerParams = cURL.split('-H ');
+            let headers = {};
+            for (let i in headerParams) {
+                let header = headerParams[i];
+                if (header.charAt(0) == '"') {
+                    header = header.substring(1, header.length - 2);
+                    let keyValue = header.split(':');
+                    if (keyValue.length > 1) {
+                        headers[keyValue[0].trim()] = keyValue[1].trim()
+                    }
+                }
+            }
+
+            $("input[name='ddmc-device-id']").val(headers['ddmc-device-id']);
+            $("input[name='cookie']").val(headers['Cookie']);
+            $("input[name='ddmc-longitude']").val(headers['ddmc-longitude']);
+            $("input[name='ddmc-latitude']").val(headers['ddmc-latitude']);
+            $("input[name='ddmc-uid']").val(headers['ddmc-uid']);
+            $("input[name='user-agent']").val(headers['user-agent']);
+
+            $("input[name='s_id']").val(queryParams['s_id']);
+            $("input[name='openid']").val(queryParams['openid']);
+            $("input[name='device_token']").val(queryParams['device_token']);
+
+            $.ajax({
+                url:'/check',
+                type:'post',
+                contentType:'application/json;charset=UTF-8',
+                data:loadPropJson(),
+                success:function (data) {
+                    let result = JSON.parse(data);
+                    $("input[name='station-id']").val(result.stationId);
+                    $("input[name='address-id']").val(result.addressId);
+                }
+            });
+        });
+
 
         form.on('submit(check)', function (data) {
             $.ajax({
@@ -333,11 +387,6 @@
             return false;
         });
     });
-
-    function parseRaw(){
-        alert("解析");
-    }
-
 
 
     /***************以下为SSE相关代码*****************/
