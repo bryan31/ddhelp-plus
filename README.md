@@ -44,9 +44,9 @@
 
 2.然后安装SSL证书，整个过程很简单，过程文章写的很详细，一步步照做就行了。
 
-MacOS版Charles设置链接：https://blog.csdn.net/z2181745/article/details/123002569。
+MacOS版Charles设置链接：https://blog.csdn.net/z2181745/article/details/123002569
 
-Windows版Charles设置链接：https://blog.csdn.net/ZY_qili/article/details/123875251。
+Windows版Charles设置链接：https://blog.csdn.net/ZY_qili/article/details/123875251
 
 文章中每一步都要照做，细心点，别漏了步骤哦！
 
