@@ -111,4 +111,4 @@ Windows版Charles设置链接：https://blog.csdn.net/ZY_qili/article/details/12
 
 ## 声明
 
-该项目只能用作学习交流之用，请勿用于其他用途。
+该项目为为 GPL3.0 协议，开源只用于学习交流之用，请勿用于其他用途和商用获取利益。
