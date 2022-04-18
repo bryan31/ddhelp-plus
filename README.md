@@ -79,6 +79,14 @@ Windows版Charles设置链接：https://blog.csdn.net/ZY_qili/article/details/12
 
 不管抢到还是没抢到，程序都会在在正式开始抢之后的2分钟自动结束（定时的时间不算哦）。
 
+
+
+## 最终效果
+
+![](img/4.png)
+
+![](img/5.png)
+
 ## 关于成功率
 
 这个抢菜程序的原理就是模拟小程序去多线程的发请求提交订单。
