@@ -119,7 +119,7 @@ public class DDPlusController {
         int baseTheadSize = 2;
 
         //提交订单执行线程数
-        int submitOrderTheadSize = 4;
+        int submitOrderTheadSize = 6;
 
         //取随机数
         //请求间隔时间最小值

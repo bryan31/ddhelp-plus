@@ -170,14 +170,14 @@
                                             <input type="text" name="s_id" th:value="${prop?.body?.sid}" required lay-verify="required" placeholder="请输入s_id对应的值" autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
-                                    <div class="layui-col-md12">
+                                    <!--<div class="layui-col-md12">
                                         <div class="layui-col-md3">
                                             <label style="width: 100%;" class="layui-form-label">openid</label>
                                         </div>
                                         <div class="layui-col-md9">
                                             <input type="text" name="openid" th:value="${prop?.body?.openid}" required lay-verify="required" placeholder="请输入openid对应的值" autocomplete="off" class="layui-input">
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="layui-col-md12">
                                         <div class="layui-col-md3">
                                             <label style="width: 100%;" class="layui-form-label">device_token</label>
@@ -215,8 +215,8 @@
                 <div class="layui-row layui-col-space15">
                     <div class="layui-col-md12">
                         <div class="layui-card">
-                            <div class="layui-card-body layui-bg-cyan" style="height: 760px;overflow-y: auto">
-                                <div id="log" style="height: 760px;overflow-y: auto">
+                            <div class="layui-card-body layui-bg-cyan" style="height: 712px;overflow-y: auto">
+                                <div id="log" style="height: 712px;overflow-y: auto">
 
                                 </div>
                             </div>
@@ -247,7 +247,7 @@
 
 
             let sid = $("input[name='s_id']").val();
-            let openid = $("input[name='openid']").val();
+            /*let openid = $("input[name='openid']").val();*/
             let deviceToken = $("input[name='device_token']").val();
 
 
@@ -264,7 +264,7 @@
                 },
                 body:{
                     sid:sid,
-                    openid:openid,
+                    /*openid:openid,*/
                     deviceToken:deviceToken
                 }
             });
@@ -309,7 +309,7 @@
             $("input[name='user-agent']").val(headers['user-agent']);
 
             $("input[name='s_id']").val(queryParams['s_id']);
-            $("input[name='openid']").val(queryParams['openid']);
+            /*$("input[name='openid']").val(queryParams['openid']);*/
             $("input[name='device_token']").val(queryParams['device_token']);
         });
 
