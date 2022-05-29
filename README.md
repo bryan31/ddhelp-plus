@@ -1,3 +1,5 @@
+这个项目只供技术研究之用了，上层项目已经停止。
+
 ## 简短说明
 
 此项目的核心后端程序来自于开源项目：https://github.com/JannsenYang/dingdong-helper
